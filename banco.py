@@ -45,6 +45,28 @@ class Banco:
     def saldo(self, numero):
         return self.procurar_conta(numero).get_saldo()
 
+    def transferir(self, origem, destino, valor):
+        conta_origem = self.procurar_conta(origem.get_numero())
+        conta_destino = self.procurar_conta(destino.get_numero())
+        if conta_destino and conta_origem:
+            if conta_origem.get_saldo() >= valor:
+                print('saldo insuficiente')
+            else:
+                conta_origem.debitar(valor)
+                conta_destino.creditar(valor)
+        else:
+            print('conta inexistente')
+
+    def render_juros(self, numero):
+        conta_analisada = self.procurar_conta(numero)
+        if conta_analisada:
+            if isinstance(conta_analisada, Contapoupanca):
+                conta_analisada.render_juros(self.juros)
+            else:
+                print('operação invalida')
+        else:
+            print('conta inexistente')
+
 
 
 

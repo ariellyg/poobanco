@@ -1,6 +1,5 @@
 from conta import Conta
 from contapoupanca import Contapoupanca
-
 class Verificapoupanca:
     if __name__ == '__main__':
         opcao = int(input('escolha: [1] Conta e [2] Poupança:'))
