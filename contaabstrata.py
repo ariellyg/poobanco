@@ -5,7 +5,7 @@ class Contaabstrata(ABC):
       self._numero = numero
       self._saldo = 0
 
-    def creditar(selfself, valor):
+    def creditar(self, valor):
         self._saldo = self._saldo + valor
 
     @property
