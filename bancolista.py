@@ -24,14 +24,15 @@ class Bancolista:
             return conta_buscada
 
     def debitar(self, numero, valor):
-        conta = self.procurar_conta(numero)
-        if conta:
-            if conta.get_saldo() >= valor:
-                conta.debitar(valor)
-            else:
-                raise SIException (conta.get_saldo(), conta.get_numero())
-        else:
-            raise CIException(numero)
+        try:
+            conta = self.procurar_conta(numero)
+            conta.debitar(valor)
+
+        except SIException (conta.get_saldo(), conta.get_numero()) as errorsi:
+            print('errorsi')
+
+        except CIException(numero) as errorci:
+            print(errorci)
 
     def creditar(self, numero, valor):
         conta = self.procurar_conta(numero)
