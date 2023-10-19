@@ -1,4 +1,4 @@
-class CIExcepition(Exception):
+class CIException(Exception):
     def __init__(self, numero, message='conta inesxistente'):
         self.numero = numero
         self.message = message

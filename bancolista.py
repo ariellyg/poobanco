@@ -1,6 +1,8 @@
 from contapoupanca import Contapoupanca
 from contaespecial import Contaespecial
 from contaabstrata import Contaabstrata
+from CI import CIException
+from SI import SIException
 
 class Bancolista:
     def __init__(self):
@@ -24,9 +26,12 @@ class Bancolista:
     def debitar(self, numero, valor):
         conta = self.procurar_conta(numero)
         if conta:
-            conta.debitar(valor)
+            if conta.get_saldo() >= valor:
+                conta.debitar(valor)
+            else:
+                raise SIException (conta.get_saldo(), conta.get_numero())
         else:
-            print('conta inexistente')
+            raise CIException(numero)
 
     def creditar(self, numero, valor):
         conta = self.procurar_conta(numero)
